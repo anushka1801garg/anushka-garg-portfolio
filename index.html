@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anushka Garg — Anushka Garg&#039;s Portfolio (Full Stack Developer)</title>
+  <meta name="description" content="Anushka Garg is a Full Stack Developer with a Bachelor of Technology in Computer Science and Engineering from ABES Engineering College. She specializes in craft">
+  <meta property="og:title" content="Anushka Garg — Portfolio">
+  <meta property="og:description" content="Building scalable web applications with React, Node.js, and TypeScript for education, commerce, and sustainability platforms.">
+  <meta property="og:image" content="https://unavatar.io/linkedin/anushka-garg-52b67a297">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --bg: #09090b;
+      --bg-card: rgba(24, 24, 27, 0.7);
+      --border: rgba(39, 39, 42, 0.8);
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-size: 18px; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    
+    /* Hero */
+    .hero { padding: 90px 0 60px; text-align: center; position: relative; }
+    .hero-glow {
+      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+      width: 380px; height: 380px; background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(9, 9, 11, 0) 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .avatar-wrap {
+      width: 120px; height: 120px; margin: 0 auto 24px; border-radius: 50%;
+      border: 3px solid rgba(99, 102, 241, 0.4); padding: 4px; background: rgba(99, 102, 241, 0.1);
+      box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.4);
+      position: relative; z-index: 1;
+    }
+    .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .avatar-placeholder { width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #4f46e5, #9333ea); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 800; color: #fff; }
+    
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc; font-size: 12px; font-weight: 600; margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .hero p { font-size: 18px; color: var(--text-muted); max-width: 650px; margin: 0 auto 32px; font-weight: 300; }
+    
+    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn {
+      padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border: none; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35); }
+    .btn-primary:hover { opacity: 0.95; transform: translateY(-1px); }
+    .btn-secondary { background: rgba(39, 39, 42, 0.7); color: #fff; border: 1px solid var(--border); }
+    .btn-secondary:hover { background: rgba(63, 63, 70, 0.8); }
+
+    /* Sections */
+    section { padding: 60px 0; border-top: 1px solid var(--border); }
+    .section-header { margin-bottom: 40px; }
+    .section-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #818cf8; font-weight: 700; margin-bottom: 6px; }
+    .section-title { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    
+    /* Cards & Grids */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 28px; transition: all 0.25s ease;
+    }
+    .card:hover { border-color: rgba(99, 102, 241, 0.4); transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    
+    /* Skills */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-chip {
+      padding: 8px 16px; background: rgba(39, 39, 42, 0.6); border: 1px solid rgba(63, 63, 70, 0.8);
+      border-radius: 12px; font-size: 13px; font-weight: 600; color: #e4e4e7; transition: all 0.2s;
+    }
+    .skill-chip:hover { border-color: #6366f1; color: #fff; background: rgba(99, 102, 241, 0.15); }
+    
+    /* Project Card */
+    .project-card { display: flex; flex-col; justify-content: space-between; }
+    .project-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .project-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+    .project-impact {
+      font-size: 12px; color: #a5b4fc; background: rgba(99, 102, 241, 0.1); border-left: 2px solid #6366f1;
+      padding: 8px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag { font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(39, 39, 42, 0.8); color: #a1a1aa; font-weight: 500; }
+    .project-links { display: flex; gap: 12px; }
+    .project-link { font-size: 12px; color: #818cf8; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+    .project-link:hover { text-decoration: underline; color: #fff; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px;
+      background: var(--border);
+    }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px;
+      border-radius: 50%; background: #6366f1; box-shadow: 0 0 10px #6366f1;
+    }
+    .role-title { font-size: 17px; font-weight: 700; color: #fff; }
+    .company-name { font-size: 14px; color: #818cf8; font-weight: 600; margin-bottom: 4px; }
+    .duration { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .bullets { list-style: disc; margin-left: 18px; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+    
+    /* Footer */
+    footer { padding: 48px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 13px; }
+    footer a { color: #818cf8; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 32px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <span style="display:inline-block;width:10px;height:10px;background:#6366f1;border-radius:50%;"></span>
+        <span>Anushka Garg</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="avatar-wrap"><img src="https://unavatar.io/linkedin/anushka-garg-52b67a297" alt="Anushka Garg" class="avatar-img" onerror="this.style.display='none'"></div>
+      <div class="badge-pill">
+        <span style="display:inline-block;width:6px;height:6px;background:#34d399;border-radius:50%;"></span>
+        <span>Available for Full Stack Developer</span>
+      </div>
+      <h1>Anushka Garg</h1>
+      <p>Building scalable web applications with React, Node.js, and TypeScript for education, commerce, and sustainability platforms.</p>
+      <div class="btn-row">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=anushka.garg1801%40gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">✉️ Get in Touch</a>
+        
+        <a href="https://www.linkedin.com/in/anushka-garg-52b67a297/" target="_blank" rel="noreferrer" class="btn btn-secondary">💼 LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- About Section -->
+    
+    <section id="about">
+      <div class="section-header">
+        <div class="section-tag mono">Background</div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="card">
+        <p style="font-size: 16px; color: #d4d4d8; line-height: 1.8;">Anushka Garg is a Full Stack Developer with a Bachelor of Technology in Computer Science and Engineering from ABES Engineering College. She specializes in crafting responsive web applications and e-commerce platforms using modern front-end frameworks and back-end technologies. Her portfolio showcases successful projects in educational resource platforms, fashion e-commerce sites, and sustainability community websites, complemented by top-tier competitive programming achievements on LeetCode and HackerRank.</p>
+        
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;">
+            <span style="color: #a1a1aa;"><strong style="color: #fff;">Target Role:</strong> Full Stack Developer</span>
+            <span style="color: #a1a1aa;"><strong style="color: #fff;">Target Company:</strong> Google</span>
+          </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    
+    <section id="skills">
+      <div class="section-header">
+        <div class="section-tag mono">Tech Stack</div>
+        <h2 class="section-title">Skills &amp; Technologies</h2>
+      </div>
+      <div class="skills-wrap">
+        <div class="skill-chip">TypeScript</div><div class="skill-chip">React</div><div class="skill-chip">Node.js</div><div class="skill-chip">Python</div><div class="skill-chip">JavaScript</div><div class="skill-chip">C++</div><div class="skill-chip">MongoDB</div><div class="skill-chip">Oracle DB</div><div class="skill-chip">SQL</div><div class="skill-chip">REST APIs</div><div class="skill-chip">Tailwind CSS</div><div class="skill-chip">Git</div><div class="skill-chip">Postman</div><div class="skill-chip">VS Code</div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    
+    <section id="projects">
+      <div class="section-header">
+        <div class="section-tag mono">Showcase</div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="grid-2">
+        
+        <div class="card project-card">
+          <div>
+            <h3 class="project-title">Study Sphere Educational Resource Platform</h3>
+            <p class="project-desc">An educational web platform providing students with organized learning resources and study materials, featuring responsive interfaces and advanced search functionality for efficient content discovery.</p>
+            <div class="project-impact"><strong>Key Impact:</strong> Streamlined student access to learning materials, improving navigation and content discovery efficiency across diverse subjects.</div>
+            <div class="tag-row"><span class="tag mono">Educational</span><span class="tag mono">Web Platform</span><span class="tag mono">Learning Management</span></div>
+          </div>
+          <div class="project-links">
+            
+            
+          </div>
+        </div>
+        <div class="card project-card">
+          <div>
+            <h3 class="project-title">Velvet Vogue Fashion E-Commerce Platform</h3>
+            <p class="project-desc">A fully functional online fashion marketplace developed with React.js and Tailwind CSS, enabling seamless product browsing, inventory management, and secure purchasing experiences.</p>
+            <div class="project-impact"><strong>Key Impact:</strong> Enhanced user engagement through a visually appealing interface and optimized mobile responsiveness for global shopping.</div>
+            <div class="tag-row"><span class="tag mono">E-commerce</span><span class="tag mono">Fashion</span><span class="tag mono">React</span><span class="tag mono">Tailwind CSS</span></div>
+          </div>
+          <div class="project-links">
+            
+            
+          </div>
+        </div>
+        <div class="card project-card">
+          <div>
+            <h3 class="project-title">EcoConnect Green Living Community Website</h3>
+            <p class="project-desc">A sustainable living platform designed to promote environmental awareness, incorporating modern web technologies for community engagement and resource sharing.</p>
+            <div class="project-impact"><strong>Key Impact:</strong> Fostered community interaction around eco-friendly practices through intuitive UI/UX design and clean visual aesthetics.</div>
+            <div class="tag-row"><span class="tag mono">Sustainability</span><span class="tag mono">Community</span><span class="tag mono">Web Design</span></div>
+          </div>
+          <div class="project-links">
+            
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    
+    <section id="experience">
+      <div class="section-header">
+        <div class="section-tag mono">Career</div>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <div class="role-title">Full Stack Developer</div>
+          <div class="company-name">Independent Contributor</div>
+          <div class="duration mono">2020 - Present</div>
+          <p style="font-size: 14px; color: #a1a1aa; margin-bottom: 8px;">Developed three prominent web applications including an educational resource platform, a fashion e-commerce site, and a sustainability community website using full-stack technologies.</p>
+          <ul class="bullets"><li>Architected Study Sphere educational platform with advanced search and categorization features</li><li>Built Velvet Vogue fashion e-commerce site leveraging React.js and Tailwind CSS for enhanced UX</li><li>Designed EcoConnect sustainability website focusing on clean design and user engagement</li></ul>
+        </div>
+        <div class="timeline-item">
+          <div class="role-title">Undergraduate Student</div>
+          <div class="company-name">ABES Engineering College</div>
+          <div class="duration mono">2019 - 2022</div>
+          <p style="font-size: 14px; color: #a1a1aa; margin-bottom: 8px;">Pursued Bachelor of Technology in Computer Science and Engineering with a CGPA of 9.1, developing foundational programming skills in multiple languages.</p>
+          <ul class="bullets"><li>Completed core computer science curriculum with strong analytical abilities</li><li>Demonstrated proficiency in C++ and competitive programming problem-solving</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    
+    <section id="education">
+      <div class="section-header">
+        <div class="section-tag mono">Academic</div>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="grid-2">
+        
+        <div class="card">
+          <h3 style="font-size: 17px; font-weight: 700; color: #fff;">Bachelor of Technology in Computer Science and Engineering</h3>
+          <p style="font-size: 14px; color: #818cf8; font-weight: 600;">ABES Engineering College</p>
+          <div class="mono" style="font-size: 12px; color: #71717a; margin-top: 4px;">Not specified</div>
+          <p style="font-size: 13px; color: #a1a1aa; margin-top: 8px;">Comprehensive degree program in computer science with emphasis on software development fundamentals and practical programming skills.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements & Certifications -->
+    
+    <section id="honors">
+      <div class="section-header">
+        <div class="section-tag mono">Recognition</div>
+        <h2 class="section-title">Certifications &amp; Achievements</h2>
+      </div>
+      <div class="grid-2">
+        
+        <div class="card">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(52, 211, 153, 0.1); color: #34d399; font-family: monospace;">CERTIFICATE</span>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-top: 8px;">Intermediate Problem Solving</h4>
+          <p style="font-size: 13px; color: #a1a1aa;">HackerRank (2022)</p>
+          
+        </div>
+        <div class="card">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(52, 211, 153, 0.1); color: #34d399; font-family: monospace;">CERTIFICATE</span>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-top: 8px;">C++ Proficiency</h4>
+          <p style="font-size: 13px; color: #a1a1aa;">HackerRank (2022)</p>
+          
+        </div>
+        
+        <div class="card">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(251, 191, 36, 0.1); color: #fbbf24; font-family: monospace;">ACHIEVEMENT</span>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-top: 8px;">LeetCode Contest Performance</h4>
+          <p style="font-size: 13px; color: #a1a1aa;">Achieved over 1687 contest ratings and solved more than 150 problems on LeetCode, demonstrating exceptional algorithmic proficiency.</p>
+          <div style="font-size: 12px; color: #fbbf24; margin-top: 4px; font-weight: 600;">Metric: 1687+ rating, 150+ problems solved</div>
+        </div>
+        <div class="card">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(251, 191, 36, 0.1); color: #fbbf24; font-family: monospace;">ACHIEVEMENT</span>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-top: 8px;">Smart India Hackathon Participation</h4>
+          <p style="font-size: 13px; color: #a1a1aa;">Participated in Smart India Hackathon, contributing to team development of an innovative solution within constrained timeframe.</p>
+          <div style="font-size: 12px; color: #fbbf24; margin-top: 4px; font-weight: 600;">Metric: Team collaboration and solution design</div>
+        </div>
+        <div class="card">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(251, 191, 36, 0.1); color: #fbbf24; font-family: monospace;">ACHIEVEMENT</span>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-top: 8px;">HackerRank Certifications</h4>
+          <p style="font-size: 13px; color: #a1a1aa;">Earned Intermediate Problem Solving certification and achieved 4-star proficiency in C++ on HackerRank.</p>
+          <div style="font-size: 12px; color: #fbbf24; margin-top: 4px; font-weight: 600;">Metric: 4* C++ certification, high-level problem solving skills</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section id="contact" style="text-align: center; padding: 80px 0;">
+      <div class="card" style="max-width: 600px; margin: 0 auto; padding: 48px 32px; background: linear-gradient(180deg, rgba(39, 39, 42, 0.5) 0%, rgba(24, 24, 27, 0.9) 100%);">
+        <h2 style="font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 12px;">Let's Connect &amp; Collaborate</h2>
+        <p style="font-size: 15px; color: #a1a1aa; margin-bottom: 28px;">
+          I am actively exploring roles and engineering challenges. Feel free to reach out via email or connect on professional channels.
+        </p>
+        <div class="btn-row">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=anushka.garg1801%40gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">✉️ anushka.garg1801@gmail.com</a>
+          <a href="https://www.linkedin.com/in/anushka-garg-52b67a297/" target="_blank" rel="noreferrer" class="btn btn-secondary">LinkedIn Profile</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Anushka Garg. Deployed via PortfolioAI Edge Pipeline.</p>
+      <p style="margin-top: 8px; font-size: 11px; color: #71717a;">Standalone production deployment — zero server dependency.</p>
+    </div>
+  </footer>
+</body>
+</html>
